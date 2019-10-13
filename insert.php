@@ -43,11 +43,7 @@ table {
 th, td {
     padding: 10px;
 }
-.result {
-    border:2px, solid;
-    border-color: black;
-    border
-}
+ 
 td {
 
 }
@@ -86,22 +82,27 @@ $nokmail, $nokOccup, $nOkaddress, $guarantor, $guaRelate, $guaAge, $guaPhone, $g
    
 /* Set the parameters values and execute
     the statement again to insert another row */
-
-    $sName = $_POST['sName'];
+Function clean($input){
+          $input =trim($input);
+          $input =stripslashes($input);
+          $input =htmlspecialchars($input);
+           return $input;
+}
+    $sName = clean($_POST['sName']);
     #if(empty($sName)){
        # echo "Name cannot be empty";
    # }esle{
 
    # }
     
-$fName =  $_POST['fName'];
-$mName = $_POST['mName'];
-$dOb = $_POST['dOb'];
-$gender = $_POST['gender'];
-$blood  =  $_POST['blood'];
-$religion =  $_POST['religion'];
-$mStatus = $_POST['mStatus'];
-$lga =  $_POST['lga'];
+$fName = clean($_POST['fName']);
+$mName = clean($_POST['mName']);
+$dOb = clean($_POST['dOb']);
+$gender = clean($_POST['gender']);
+$blood  =  clean($_POST['blood']);
+$religion =  clean($_POST['religion']);
+$mStatus = clean($_POST['mStatus']);
+$lga =  clean($_POST['lga']);
 $origin = $_POST['origin'];
 $nation =  $_POST['nation'];
 $phone =  $_POST['phone'];
@@ -129,16 +130,15 @@ $guaddress = mysqli_real_escape_string($link, $_REQUEST['guaddress']);
 
    // Attempt to execute the prepared statement
    if(mysqli_stmt_execute($stmt)){
-     echo " <p>Your Form was submitted Successfully!</p>
-     <p>Print your form details and submit a copy at <br >
+     echo " <h3>Form submitted Successfully!</h3>
+     <p>Print and submit a copy at <br >
      the State Command Headquarters for further processing!</p>
-     <p> Here are the Information you Submitted</p>
 
      <table>
                 <tr>       
-        <th>Personal Details</th>
-        <th >Next of Kin Details</th>
-        <th >Guarantor's Details</th>
+        <th>Personal Data</th>
+        <th>Next of Kin Details</th>
+        <th>Guarantor's Details</th>
       
         </tr>
         <tr> 
